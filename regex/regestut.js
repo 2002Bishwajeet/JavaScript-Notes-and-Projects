@@ -7,4 +7,47 @@ console.log(result);
 
 let petString = "James has a pet cat.";
 let petRegex = /dog|cat|bird|fish/; // | line is basically OR agar in 4 words se koi bhi mil jae toh balle balle (true return kardena)
-let result = petRegex.test(petString);
+let result2 = petRegex.test(petString);
+
+let myString = "freeCodeCamp";
+let fccRegex = /freecodecamp/i; // Yaha pe i for ignoring the case kuch bhi ho upper case ya lower case mile toh bas bata dena
+let result = fccRegex.test(myString);
+
+console.log(result);
+
+
+let testStr = "Repeat, Repeat, Repeat";
+let ourRegex = /Repeat/;
+testStr.match(ourRegex); // Match gives the output agar mila toh like this [outpur]
+
+let repeatRegex = /Repeat/g;
+testStr.match(repeatRegex); // isme repaeted milenge cause /g daal diya
+
+//  these are basically called flags . And as usual we can have multiple flags
+
+let exampleStr = "Let's have fun with regular expressions!";
+let unRegex = /.un/; // Change this line  // yaha dot before un mtlb koi bhi ho bata dio
+let result = unRegex.test(exampleStr);
+
+let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
+let vowelRegex = /[aeiou]/gi; // Change this line
+let result = quoteSample.match(vowelRegex); // Change this line
+// [] for telling agar inme se kuch bhi mile toh bata dena 
+
+//  better using this example
+let bigStr = "big";
+let bagStr = "bag";
+let bugStr = "bug";
+let bogStr = "bog";
+let bgRegex = /b[aiu]g/;
+bigStr.match(bgRegex);
+bagStr.match(bgRegex);
+bugStr.match(bgRegex);
+bogStr.match(bgRegex);
+
+
+
+// Like this ek range se numbers dhoondh sakte hai
+let quoteSample = "Blueberry 3.141592653s are delicious.";
+let myRegex = /[h-s2-6]/gi; // Change this line
+let result = quoteSample.match(myRegex); // Change this line
