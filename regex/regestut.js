@@ -78,3 +78,83 @@ oPhrase.match(goRegex);  //null   This is their output
 
 // However, you can use the ? character to change it to lazy matching.
 //  "titanic" matched against the adjusted regex of /t[a-z]*?i/ returns ["ti"].
+
+
+//  To search the end of strings using the dollar sign character $ at the end of the regex.
+
+let longHand = /[A-Za-z0-9_]+/;
+let shortHand = /\w+/; // It is the short form of Longhand and yes + for finding in continuous
+let numbers = "42";
+let varNames = "important_var";
+longHand.test(numbers);
+shortHand.test(numbers);
+longHand.test(varNames);
+shortHand.test(varNames);
+
+// You can search for the opposite of the \w with \W. \W for negation and \w for finding them
+// Note, the opposite pattern uses a capital letter. 
+// This shortcut is the same as [^A-Za-z0-9_].
+
+// The shortcut to look for digit characters is \d, with a lowercase d. 
+// This is equal to the character class [0-9], which looks for a single character of any number between zero and nine.
+
+let movieName = "2001: A Space Odyssey";
+let numRegex = /\d/g; // Change this line
+let result = movieName.match(numRegex).length;
+
+// The shortcut to look for non-digit characters is \D.
+//  This is equal to the character class [^0-9], which looks for a single character that is not a number between zero and nine.
+
+let movieName = "2001: A Space Odyssey";
+let noNumRegex = /\D/g; // Change this line
+let result = movieName.match(noNumRegex).length;
+
+// Let's Create a program to restrict possible Usernames
+/* 
+1. Usernames can only use alpha-numeric characters.
+
+2. The only numbers in the username have to be at the end. 
+There can be zero or more of them at the end.
+ Username cannot start with the number.
+
+3. Username letters can be lowercase and uppercase.
+
+4. Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.
+*/
+
+let username = "JackOfAllTrades";
+// let userCheck = /\w\d$/i; // Proposed way of thinking
+let userCheck = /^[a-z][a-z]+\d*$|^[a-z]\d\d+$/i; // Actual way of doing it
+/* 
+1. ^ - start of input
+2. [a-z] - first character is a letter
+3. [a-z]+ - following characters are letters
+4. \d*$ - input ends with 0 or more digits
+5. | - or
+6. ^[a-z] - first character is a letter
+7. \d\d+ - following characters are 2 or more digits
+8. $ - end of input
+
+*/
+let result = userCheck.test(username);
+
+/* 
+You can search for whitespace using \s, which is a lowercase s.
+This pattern not only matches whitespace, but also carriage return, tab, form feed, and new line characters.
+You can think of it as similar to the character class [ \r\t\f\n\v].
+*/
+// Example
+let sample = "Whitespace is important in separating words";
+let countWhiteSpace = /\s/g; // Change this line
+let result = sample.match(countWhiteSpace);
+
+/* 
+Search for non-whitespace using \S, which is an uppercase s.
+This pattern will not match whitespace, carriage return, tab, form feed, and new line characters.
+You can think of it being similar to the character class [^ \r\t\f\n\v].
+*/
+
+// Example
+let sample = "Whitespace is important in separating words";
+let countNonWhiteSpace = /\S/g; // Change this line
+let result = sample.match(countNonWhiteSpace);
