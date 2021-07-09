@@ -158,3 +158,97 @@ You can think of it being similar to the character class [^ \r\t\f\n\v].
 let sample = "Whitespace is important in separating words";
 let countNonWhiteSpace = /\S/g; // Change this line
 let result = sample.match(countNonWhiteSpace);
+
+/* Difference between '+' and '*'
+Recall that you use the plus sign + to look for one or more characters and 
+the asterisk * to look for zero or more characters.  
+*/
+
+// You can specify the lower and upper number of patterns with quantity specifiers.
+// Quantity specifiers are used with curly brackets ({ and }).
+//  You put two numbers between the curly brackets - for the lower and upper number of patterns.
+
+let ohStr = "Ohhh no";
+let ohRegex = /oh{3,6}\sno/i; // Change this line
+let result = ohRegex.test(ohStr);
+
+/* 
+You can specify the lower and upper number of patterns with quantity specifiers using curly brackets. Sometimes you only want to specify the lower number of patterns with no upper limit.
+
+To only specify the lower number of patterns, keep the first number followed by a comma.
+
+For example, to match only the string hah with the letter a appearing at least 3 times, your regex would be /ha{3,}h/.
+*/
+let A4 = "haaaah";
+let A2 = "haah";
+let A100 = "h" + "a".repeat(100) + "h";
+let multipleA = /ha{3,}h/;
+multipleA.test(A4);
+multipleA.test(A2);
+multipleA.test(A100);
+
+
+// You can specify the lower and upper number of patterns with quantity specifiers using curly brackets. Sometimes you only want a specific number of matches.
+
+// To specify a certain number of patterns, just have that one number between the curly brackets.
+
+// For example, to match only the word hah with the letter a 3 times, your regex would be /ha{3}h/.
+
+let A4 = "haaaah";
+let A3 = "haaah";
+let A100 = "h" + "a".repeat(100) + "h";
+let multipleHA = /ha{3}h/;
+multipleHA.test(A4);
+multipleHA.test(A3);
+multipleHA.test(A100);
+
+// You can specify the possible existence of an element with a question mark, ?.
+//  This checks for zero or one of the preceding element. 
+// You can think of this symbol as saying the previous element is optional.
+
+/* 
+Lookaheads are patterns that tell JavaScript to look-ahead in your string to check for patterns further along. This can be useful when you want to search for multiple patterns over the same string.
+
+There are two kinds of lookaheads: positive lookahead and negative lookahead.
+
+A positive lookahead will look to make sure the element in the search pattern is there, but won't actually match it. A positive lookahead is used as (?=...) where the ... is the required part that is not matched.
+
+On the other hand, a negative lookahead will look to make sure the element in the search pattern is not there. A negative lookahead is used as (?!...) where the ... is the pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
+
+Lookaheads are a bit confusing but some examples will help.
+*/
+let quit = "qu";
+let noquit = "qt";
+let quRegex= /q(?=u)/;
+let qRegex = /q(?!u)/;
+quit.match(quRegex);
+noquit.match(qRegex);
+
+// Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses ().
+
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr); // This seems a better example
+
+let myString = "Eleanor Roosevelt";
+let myRegex = /(Franklin|Eleanor).*Roosevelt/; // Change this line
+let result = myRegex.test(myString); // Change this line
+// After passing the challenge experiment with myString and see how the grouping works
+// .* for allowing middle words
+
+
+/* 
+You can search for repeat substrings using capture groups. Parentheses, ( and ), are used to find repeat substrings. You put the regex of the pattern that will repeat in between the parentheses.
+
+To specify where that repeat string will appear, you use a backslash (\) and then a number. This number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group.
+
+The example below matches any word that occurs twice separated by a space:
+
+*/
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+repeatRegex.test(repeatStr);
+repeatStr.match(repeatRegex);
+
+
+
