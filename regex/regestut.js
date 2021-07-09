@@ -51,3 +51,30 @@ bogStr.match(bgRegex);
 let quoteSample = "Blueberry 3.141592653s are delicious.";
 let myRegex = /[h-s2-6]/gi; // Change this line
 let result = quoteSample.match(myRegex); // Change this line
+
+// To create a negated character set,
+//  you place a caret character (^) after the opening bracket and before the characters you do not want to match.
+
+//  This is the example
+let quoteSample = "3 blind mice.";
+let myRegex = /[^aeiou1-9]/gi; // ^ this is negation character it ignores these stuffs . agar bina 
+// square bracket ke daal it wil ignore in the starting 
+let result = quoteSample.match(myRegex); // Change this line
+
+let difficultSpelling = "Mississippi";
+let myRegex = /s+/g; // Yaha + for finding s in continuous row basically finding a pattern
+let result = difficultSpelling.match(myRegex);
+
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/; // Yaha pe go* ka mtlb to look for character zero or more times 
+soccerWord.match(goRegex); // ["goooooooo"],  This is their output
+gPhrase.match(goRegex);    // ["g"]  This is their output
+oPhrase.match(goRegex);  //null   This is their output
+
+// A greedy match finds the longest possible part of a string that fits the regex pattern and returns it as a match. 
+// The alternative is called a lazy match, which finds the smallest possible part of the string that satisfies the regex pattern.
+
+// However, you can use the ? character to change it to lazy matching.
+//  "titanic" matched against the adjusted regex of /t[a-z]*?i/ returns ["ti"].
