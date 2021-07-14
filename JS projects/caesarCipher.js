@@ -8,14 +8,9 @@
 //  because each letter in the string "cheer" is rotated 7 places to the
 //  right in the alphabet.
 //
-function rotate(str) {
-  var newStr = "";
-  for (var i = 0; i < str.length; i++) {
-    var char = str.charAt(i);
-    var newChar = String.fromCharCode(char.charCodeAt(0) + 13);
-    newStr += newChar;
-  }
-  return newStr;
+function rot13(str) {
+
+  return str.replace(/[A-Z]/g, L => String.fromCharCode((L.charCodeAt(0) % 26) + 65));
 }
 
-console.log(rotate("SERR PBQR PNZC"));
+rot13("SERR PBQR PNZC");

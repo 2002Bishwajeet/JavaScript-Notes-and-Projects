@@ -129,3 +129,54 @@ var watchList = [
   // Only change code above this line
   
   console.log(JSON.stringify(ratings));
+
+  // This var should contain an array of objects, each object containing a title and rating property.
+  //  so a combination of map and filter would be used
+  var filteredList = watchList
+  .map(movie => {
+    return {
+      title: movie.Title,
+      rating: movie.imdbRating
+    };
+  })
+  .filter(movie => {
+    // return true it will keep the item
+    // return false it will reject the item
+    return parseFloat(movie.rating) >= 8.0;
+  });
+
+/* 
+yeh Filter method ka working 
+Array.prototype.myFilter = function(callback){
+  // Only change code below this line
+  let newArray = [];
+  this.forEach(function(x) {
+    if (callback(x) == true) {
+      newArray.push(x);
+    }
+  });
+  // Only change code above this line
+  return newArray;
+};
+*/
+//  This function combination fo map filter and reduce
+function getRating(watchList){
+  // Only change code below this line
+  var averageRating =  watchList
+    // Use filter to find films directed by Christopher Nolan
+    .filter(film => film.Director === "Christopher Nolan")
+    // Use map to convert their ratings from strings to numbers
+    .map(film => Number(film.imdbRating))
+    // Use reduce to add together their ratings
+    .reduce((sumOfRatings, rating) => sumOfRatings + rating) /
+  // Divide by the number of Nolan films to get the average rating
+  watchList.filter(film => film.Director === "Christopher Nolan").length;
+  // Add your code above this line
+
+
+  // Only change code above this line
+  return averageRating;
+}
+console.log(getRating(watchList));
+
+console.log(["a", "d", "c", "a", "z", "g"].sort());
